@@ -16,12 +16,12 @@ namespace SimdMandelbrot
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static bool VecIsAnyLe(Vec v, Vec f)
         {
-            var m = Avx2.Compare(v, f, FloatComparisonMode.LessThanOrEqualOrderedSignaling);
+            var m = Avx2.Compare(v, f, FloatComparisonMode.OrderedLessThanOrEqualSignaling);
             return !Avx2.TestZ(m, m);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static int VecIsLe(Vec v1, Vec v2) => Avx2.MoveMask(Avx2.Compare(v1, v2, FloatComparisonMode.LessThanOrEqualOrderedSignaling));
+        static int VecIsLe(Vec v1, Vec v2) => Avx2.MoveMask(Avx2.Compare(v1, v2, FloatComparisonMode.OrderedLessThanOrEqualSignaling));
 
         static readonly byte[] _bitRev =
         {
